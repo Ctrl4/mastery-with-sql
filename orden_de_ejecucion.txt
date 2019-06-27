@@ -1,0 +1,22 @@
+Teniendo en cuenta la siguiente consulta:
+	select title, rental_rate, replacement_cost, ceil(replacement_cost / rental_rate) as break_even 
+	from film 
+	where break_even=31 
+	order by break_even desc;
+
+¿Por qué da error break_even si lo usamos en el where, pero no si lo usamos en el order by?
+
+Esto se da por el órden de ejecución de la sentencia SQL.
+
+from: pick the tables  to be queried
+where: filter the rows
+group by: aggregate rows together
+having: filter the aggregates
+select: select the columns that appear in the output
+order by: sort the rows
+limit: limit the number of returned rows
+
+
+
+Como vemos al momento de ejecutar el where el alias break_even (dentro del select) todavía no fue definido. Pero funciona con el order by porque este paso se ejecuta después del select y por lo tanto el alias ya está definido.
+
