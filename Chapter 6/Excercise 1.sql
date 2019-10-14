@@ -1,6 +1,6 @@
-// 6.1 Write a query to return a list of all the films rented by PETER MENARD showing the most recent first
+-- 6.1 Write a query to return a list of all the films rented by PETER MENARD showing the most recent first
 
-// Table(s) to use: rental, customer, inventory, film
+-- Table(s) to use: rental, customer, inventory, film
 
 select r.rental_date, f.title
 from rental as r
@@ -15,7 +15,7 @@ where c.first_name = 'PETER'
 order by r.rental_date desc;
 
 
-// 6.2 Write a query to list the full names and contact details for the manager of each store
+-- 6.2 Write a query to list the full names and contact details for the manager of each store
 
 
 select 
@@ -26,7 +26,7 @@ from store as s
       inner join staff as m on store.manager_staff_id = staff.staff_id;
 
 
-// 6.3 Write a query to return the top 3 most rented out films and how many times they've been rented out
+-- 6.3 Write a query to return the top 3 most rented out films and how many times they've been rented out
 
 
 select f.film_id, f.title, count(*)
@@ -38,7 +38,7 @@ order by count(*) desc
 limit 3;
 
 
-// 6.4 Write a query to show for each customer how many different (unique) films they've rented and how many different (unique) actors they've seen in films they've rented
+-- 6.4 Write a query to show for each customer how many different (unique) films they've rented and how many different (unique) actors they've seen in films they've rented
 select
   r.customer_id,
   count(distinct f.film_id) as num_films,
@@ -51,7 +51,7 @@ group by r.customer_id
 order by r.customer_id;
 
 
-//6.5 Re-write the query below written in the older style of inner joins (which you still encounter surprisingly often online) using the more modern style. Re-write it once using ON to establish the join condition and the second time with USING.
+-- 6.5 Re-write the query below written in the older style of inner joins (which you still encounter surprisingly often online) using the more modern style. Re-write it once using ON to establish the join condition and the second time with USING.
 
 
 select film.title, language.name as "language"
@@ -59,7 +59,7 @@ from film
   inner join language
     on film.language_id = language.language_id;
 
-//solution
+-- solution
 
 select film.title, language.name as "language"
 from film
